@@ -1,0 +1,78 @@
+-----TABELA-----
+
+CREATE TABLE H_VOO (
+    H_VOO_ID NUMBER,
+    H_VOO_NUMERO VARCHAR2(10),
+    H_VOO_EMP_ID NUMBER,
+    H_VOO_COD_DI VARCHAR2(10),
+    H_VOO_COD_TIPO_LINHA VARCHAR2(10),
+    H_VOO_MOD_EQUIP VARCHAR2(50),
+    H_VOO_NUM_ASSENTOS NUMBER,
+    H_VOO_AER_ORI_ID NUMBER,
+    H_VOO_AER_DES_ID NUMBER,
+    H_VOO_STS_PART_ID NUMBER,
+    H_VOO_STS_CHEG_ID NUMBER,
+    H_VOO_DATA_ALTERACAO DATE,
+    CONSTRAINT PK_H_VOO PRIMARY KEY (H_VOO_ID, H_VOO_DATA_ALTERACAO)
+);
+
+-----TRIGGER-----
+
+CREATE TRIGGER TG_HVOO
+BEFORE UPDATE OR DELETE
+ON VOO
+FOR EACH ROW
+BEGIN
+    INSERT INTO H_VOO VALUES (
+        :OLD.VOO_ID, 
+        :OLD.VOO_NUMERO, 
+        :OLD.VOO_EMP_ID, 
+        :OLD.VOO_COD_DI, 
+        :OLD.VOO_COD_TIPO_LINHA,
+        :OLD.VOO_MOD_EQUIP, 
+        :OLD.VOO_NUM_ASSENTOS, 
+        :OLD.VOO_AER_ORI_ID, 
+        :OLD.VOO_AER_DES_ID,
+        :OLD.VOO_STS_PART_ID, 
+        :OLD.VOO_STS_CHEG_ID, 
+        SYSDATE
+    );
+END;
+/
+-------------------------------------------------------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------------------------------------------------------
+
+-----TABELA-----
+
+CREATE TABLE H_DATAS_VOO (
+    H_DTV_ID NUMBER,
+    H_DTV_VOO_ID NUMBER,
+    H_DTV_PART_PREV TIMESTAMP,
+    H_DTV_PART_REAL TIMESTAMP,
+    H_DTV_CHEG_PREV TIMESTAMP,
+    H_DTV_CHEG_REAL TIMESTAMP,
+    H_DTV_REF DATE,
+    H_DTV_DATA_ALTERACAO DATE,
+    CONSTRAINT PK_H_DATAS_VOO PRIMARY KEY (H_DTV_ID, H_DTV_DATA_ALTERACAO)
+);
+
+
+-----TRIGGER-----
+
+CREATE TRIGGER TG_HDTV
+BEFORE UPDATE OR DELETE
+ON DATAS_VOO
+FOR EACH ROW
+BEGIN
+    INSERT INTO H_DATAS_VOO VALUES (
+        :OLD.DTV_ID,
+        :OLD.DTV_VOO_ID,
+        :OLD.DTV_PART_PREV,
+        :OLD.DTV_PART_REAL,
+        :OLD.DTV_CHEG_PREV,
+        :OLD.DTV_CHEG_REAL,
+        :OLD.DTV_REF,
+        SYSDATE
+    );
+END;
+/

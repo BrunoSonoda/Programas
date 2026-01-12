@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post e Get</title>
+</head>
+<body>
+    <h1>Formulário com Post e Get</h1>
+
+    <form action="cadastro.php" method="POST">
+
+        <p>
+        <label for="usu">Usuario:</label> 
+        <input type="Usuario" name="usu" id="age" required maxlength="20" placeholder="Seu nome">
+        </p>
+
+        <p>
+        <label for="pass">Senha:</label>
+        <input type="password" name="senha" id="pass" required minlength="8" autocomplete="current-password">
+        </p>
+
+        <p>
+        <input type="submit" value="Enviar">       
+        <input type="reset" value="Limpar">
+        </p>
+
+    </form>
+
+    <form action="cadastro.php" method="GET">
+
+        <p>
+        <label for="height">Altura:</label>
+        <input type="number" name="altura" id="age" min="0" max="2.5" step="0.1" value="1">
+        </p>
+
+        <p>
+        <input type="submit" value="Enviar">
+        </p>
+
+    </form>
+
+    <br>
+
+    <form action="" method="get">
+
+        <p>
+            <label for="inome">Nome: </label>
+            <input type="text" name="nome" id="inome" required maxlength="30" placeholder="Seu nome" autocomplete="name">
+        </p>
+        <p>
+            <label for="mes">Mês: </label>
+            <input type="month" name="month" id="mes">
+        </p>
+        <p>
+            <label for="Dia">Dia: </label>
+            <input type="date" name="day" id="Dia">
+        </p>
+
+    </form>
+</body>
+</html>

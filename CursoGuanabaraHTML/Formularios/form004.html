@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora</title>
+</head>
+<body>
+    <h1>Exemplo de Uso de script</h1>
+
+    <form action="calculo.php" method="get">
+
+        <p>
+            <label for="num1">Número 1: </label>
+            <input type="number" name="n1" id="num1" min="0" required oninput="isoma.innerHTML = Number(num1.value) + Number(num2.value)">
+        </p>
+
+        <p>
+            <label for="num2">Número 2: </label>
+            <input type="number" name="n2" id="num2" min="0" required oninput="isoma.innerHTML = Number(num1.value) + Number(num2.value)">
+        </p>
+
+        <p>
+            <label for="isoma">Resultado = </label>
+            <output name="soma" id="isoma">0</output>
+        </p>
+
+        <p>
+            <input type="reset" value="Limpar">
+        </p>
+
+    </form>
+
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM</title>
+    <style>
+        body {
+            background-color: rgba(137, 43, 226, 0.747);
+            color: white;
+        }
+        body > p {
+            color: black;
+        }
+    </style>
+</head>
+<body>
+    <h1>Bem Vindo</h1>
+    <p>Documento</p>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. <strong>Neque</strong>, ipsum quo? Minus itaque vero distinctio quo quis error quibusdam accusantium, quos excepturi optio, officia illum omnis! Accusamus quo impedit ut.</p>
+    <div id="div1">Clique em mim</div>
+    <script>
+        var p1 = window.document.getElementsByTagName('p')[0]
+        var d1 = window.document.getElementById('div1')
+        window.alert('Olá')
+        window.document.write(window.navigator.appName)
+        window.document.write(p1.innerText)
+        p1.style.color = 'green'
+        d1.style.color = 'blue'
+    </script>
+</body>
+</html>

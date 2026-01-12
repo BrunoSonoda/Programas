@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>cadastro</title>
+    <style>
+        body{
+            background-color: rgba(37, 90, 170, 0.952);
+            color: aliceblue;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        h1{
+            text-align: center;
+        }
+        fieldset{
+            background-color: rgb(32, 138, 180);
+        }
+    </style>
+</head>
+<body>
+    <h1>Cadastro</h1>
+    <form action="" method="get" autocomplete="on">
+        <fieldset>
+            <legend>Dados Pessoais</legend>
+            <p>
+                <label for="email">
+                    Email:
+                </label>
+                <input type="email" name="mail" id="email" required>
+            </p>
+            <p>
+                <label for="tel">
+                    Telefone:
+                </label>
+                <input type="tel" name="telefone" id="tel" pattern="^\(\d{2}\)\d{4,5}-\d{4}$" placeholder="(xx)xxxx-xxxx" autocomplete="tel" required>
+            </p>
+            <input type="radio" name="sexo" id="imasc">
+            <label for="imasc">Maculino</label>
+            <input type="radio" name="sexo" id="ifem">
+            <label for="ifem">Feminino</label>
+
+            <p>
+                <label for="iest">Estado </label>
+                <select name="estado" id="iest">
+                    <option value="" selected>--Estado--</option>
+                    <optgroup label="Região Sudeste">
+                        <option value="SP">São Paulo</option>
+                        <option value="MG">Minas Gerais</option>
+                    </optgroup>
+                </select>
+            </p>
+
+            <p>
+                <label for="iprof">Profisão</label>
+                <input type="text" name="prof" id="iprof" list="lstprof">
+                <datalist id="lstprof">
+                    <option value="ADM">Administrador</option>
+                    <option value="TI">Analista de SO</option>
+                </datalist>
+            </p>
+
+            <p>
+                <label for="icur">Currículo: </label>
+                <input type="file" name="curri" id="icur">
+            </p>
+        </fieldset>
+        <fieldset>
+            <legend>Coisas Favoritos</legend>
+            <input type="checkbox" name="game" id="igame">
+            <label for="igame">Videogame</label> <br>
+            <input type="checkbox" name="fut" id="ifut">
+            <label for="ifut">Futebol</label> <br>
+            <input type="checkbox" name="des" id="ides">
+            <label for="ides">Desenhar</label> <br>
+
+            <label for="icolor">Cor Favorita: </label>
+            <input type="color" name="favcolor" id="icolor" value="FF0000FF">
+            <p>
+                <label for="iniv">Satisfação: </label>
+                <span>0</span>
+                <input type="range" name="nivel" id="iniv" min="0" max="10" value="5">
+                <span>10</span>
+            </p>
+        </fieldset>
+        <p>
+            <input type="submit" value="Enviar">
+            <input type="reset" value="Limpar">
+        </p>
+    </form>
+</body>
+</html>

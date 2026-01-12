@@ -1,0 +1,42 @@
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flexbox</title>
+    <style>
+        div.container {
+            background-color: lightsalmon;
+
+            display: flex;
+            flex-flow: row wrap;
+
+        }
+
+        div.item {
+            background-color: blueviolet;
+            border: 1px solid black;
+            text-align: center;
+            flex-basis: 150px;
+            flex-shrink: 1;
+            flex-grow: 1;
+        }
+
+        div#l9 {
+            align-self: flex-end;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="item" id="l9" style="order: 1;">Exemplo de bloco: A</div>
+        <div class="item">Exemplo de bloco: B</div>
+        <div class="item">Exemplo de bloco: C</div>
+        <div class="item" style="order: 0;">Exemplo de bloco: D </div>
+        <div class="item">Exemplo de bloco: E</div>
+        <div class="item">Exemplo de bloco: F</div>
+    </div>
+</body>
+
+</html>

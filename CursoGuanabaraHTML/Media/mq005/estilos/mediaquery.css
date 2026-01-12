@@ -1,0 +1,32 @@
+@charset "UTF-8";
+
+@media print {
+   body {
+    font-family: 'Courier New', Courier, monospace;
+    padding: 10px;
+    margin: 10px;
+   }
+
+   span#buguer {
+       display: none;
+   }
+}
+
+@media screen and (min-width: 768px){
+    span#buguer {
+        display: none;
+    }
+
+    menu {
+        display: block;
+    }
+
+    menu > ul > li {
+        display: inline-block;
+    }
+
+    main{
+        width: 758px;
+    }
+}
+

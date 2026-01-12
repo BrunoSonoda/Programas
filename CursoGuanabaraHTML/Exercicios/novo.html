@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        div{
+            display: block;
+            border: 1px solid black;
+            text-align: center;
+            color: black;
+            height: 200px;
+            width: 200px;
+        }
+        div#Um{
+            background-color: rgb(234, 6, 241);
+        }
+        .dois{
+            background-color: blue;
+        }
+        div:hover{
+            background-color: red;
+        }
+        div:hover#Um{
+            background-color: red;
+        }
+        div > p{
+            display: none;
+            color:blue;
+        }
+        div:hover > p{
+            display: block;
+            color: aliceblue;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <p>Para gerar um código html no vccode <br> É somente colocar o nome do 
+    arquivo .html e depois !enter</p>
+
+    <h1>Vídeo do YouTube</h1>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/TddPNLQxk0Y?si=eSH3dCkiyGP2QLHM"
+        title="YouTube video player" frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    
+    <!-- /<video width="" poster="" controls>
+        <source>
+        </video>-->
+    <div id="Um">01</div>
+    <div class="dois">02</div>
+    <div class="dois">03</div>
+    <div class="dois">
+        04
+        <p>Texto escondido</p>
+    </div>
+</body>
+</html>
