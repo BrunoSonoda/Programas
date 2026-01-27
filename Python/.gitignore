@@ -1,3 +1,4 @@
-CursoPythonGuanabara/Musica/
-Pygame/Music/
-Pygame/Som/
+# Ignorar pastas de áudio neste diretório
+Musica/
+Music/
+Som/
