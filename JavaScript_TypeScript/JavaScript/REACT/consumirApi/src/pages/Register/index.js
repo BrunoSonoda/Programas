@@ -11,7 +11,7 @@ import history from "../../services/history";
 export default function Register() {
   const [nome, setNome] = useState("");
   const [email, setEmail] = useState("");
-  const [senha, setSenha] = useState("");
+  const [password, setPassword] = React.useState("");
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -27,7 +27,7 @@ export default function Register() {
       toast.error("Email inválido");
     }
 
-    if (senha.length < 6 || senha.length > 50) {
+    if (password.length < 6 || password.length > 50) {
       formErrors = true;
       toast.error("Senha deve ter entre  6 e 50 caracteres");
     }
@@ -37,7 +37,7 @@ export default function Register() {
     try {
       await axios.post("/users/", {
         nome,
-        senha,
+        password,
         email,
       });
       toast.success("Você fez seu cadastro");
@@ -77,8 +77,8 @@ export default function Register() {
           Senha:
           <input
             type="password"
-            value={senha}
-            onChange={(e) => setSenha(e.target.value)}
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
             placeholder="Sua Senha"
           ></input>
         </label>
