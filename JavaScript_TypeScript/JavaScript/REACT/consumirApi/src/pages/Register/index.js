@@ -1,25 +1,38 @@
 import React, { useState } from "react";
 import { toast } from "react-toastify";
 import { isEmail } from "validator";
-import { get } from "lodash";
+import { useSelector, useDispatch } from "react-redux";
 
 import { Container } from "../../styles/GlobalStyles";
 import { Form } from "./styled";
-import axios from "../../services/axios";
-import history from "../../services/history";
 import Loading from "../../components/Loading";
+import * as actions from "../../store/modules/auth/actions";
 
 export default function Register() {
+  const dispatch = useDispatch();
+
+  const id = useSelector((state) => state.auth.user.id);
+  const nomeStored = useSelector((state) => state.auth.user.nome);
+  const emailStored = useSelector((state) => state.auth.user.email);
+  const isLoading = useSelector((state) => state.auth.isLoading);
+
   const [nome, setNome] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = React.useState("");
-  const [isLoading, setIsLoading] = useState(false);
+
+  React.useEffect(() => {
+    if (!id) return;
+
+    setNome(nomeStored);
+    setEmail(emailStored);
+  }, [emailStored, id, nomeStored]);
 
   async function handleSubmit(e) {
     e.preventDefault();
+
     let formErrors = false;
 
-    if (nome.length < 3 || nome.length > 255) {
+    if (!id && (password.length < 6 || password.length > 50)) {
       formErrors = true;
       toast.error("Nome deve ter entre  3 e 255 caracteres");
     }
@@ -36,22 +49,7 @@ export default function Register() {
 
     if (formErrors) return;
 
-    setIsLoading(true);
-
-    try {
-      await axios.post("/users/", {
-        nome,
-        password,
-        email,
-      });
-      toast.success("Você fez seu cadastro");
-      setIsLoading(false);
-      history.push("/login");
-    } catch (e) {
-      const errors = get(e, "response.data.errors", []);
-      errors.map((error) => toast.error(error));
-      setIsLoading(false);
-    }
+    dispatch(actions.registerRequest({ nome, email, password, id }));
   }
 
   return (
