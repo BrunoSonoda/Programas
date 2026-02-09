@@ -18,8 +18,16 @@ export default function (state = initialState, action) {
       return newState;
     }
 
+    case "persist/REHYDRATE": {
+      return {
+        ...state,
+        isLoading: false,
+      };
+    }
+
     case types.LOGIN_FAILURE: {
       const newState = { ...initialState };
+      newState.isLoading = false;
       return newState;
     }
 
