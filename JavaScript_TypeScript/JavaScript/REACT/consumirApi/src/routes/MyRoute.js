@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { Navigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
-export default function MyRoute({ children, isClosed }) {
+export default function MyRoute({ children, isClosed = false }) {
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
 
   if (isClosed && !isLoggedIn) {
@@ -12,10 +12,6 @@ export default function MyRoute({ children, isClosed }) {
 
   return children;
 }
-
-MyRoute.defaultProps = {
-  isClosed: false,
-};
 
 MyRoute.propTypes = {
   children: PropTypes.node.isRequired,

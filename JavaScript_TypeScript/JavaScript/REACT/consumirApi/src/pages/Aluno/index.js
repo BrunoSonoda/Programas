@@ -1,20 +1,21 @@
 import React, { useState, useEffect } from "react";
 import { get } from "lodash";
 import { isEmail, isInt, isFloat } from "validator";
-import PropTypes from "prop-types";
 import { toast } from "react-toastify";
 import { useDispatch } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
+import { FaUserCircle, FaEdit } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 import axios from "../../services/axios";
-import history from "../../services/history";
 import { Container } from "../../styles/GlobalStyles";
-import { Form } from "./styled";
+import { Form, ProfilePicture, Title } from "./styled";
 import Loading from "../../components/Loading";
 import * as actions from "../../store/modules/auth/actions";
 
-export default function Aluno({ match }) {
+export default function Aluno() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const { id } = useParams();
   const [nome, setNome] = useState("");
@@ -23,6 +24,7 @@ export default function Aluno({ match }) {
   const [idade, setIdade] = useState("");
   const [peso, setPeso] = useState("");
   const [altura, setAltura] = useState("");
+  const [foto, setFoto] = useState("");
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
@@ -33,6 +35,8 @@ export default function Aluno({ match }) {
         setIsLoading(true);
         const { data } = await axios.get(`/alunos/${id}`);
         const Foto = get(data, "Fotos[0].url", "");
+
+        setFoto(Foto);
 
         setNome(data.nome);
         setSobrenome(data.sobrenome);
@@ -48,12 +52,12 @@ export default function Aluno({ match }) {
         const errors = get(err, "response.data.errors", []);
 
         if (status === 400) errors.map((error) => toast.error(error));
-        history.push("/");
+        navigate("/");
       }
     }
 
     getData();
-  }, [id]);
+  }, [id, navigate]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -114,7 +118,7 @@ export default function Aluno({ match }) {
           altura,
         });
         toast.success("Aluno(a) criado(a) com sucesso!");
-        history.push(`/aluno/${data.id}/edit`);
+        navigate(`/aluno/${data.id}/edit`);
       }
 
       setIsLoading(false);
@@ -136,7 +140,16 @@ export default function Aluno({ match }) {
     <Container>
       <Loading isLoading={isLoading} />
 
-      <h1>{id ? "Editar aluno" : "Novo Aluno"}</h1>
+      <Title>{id ? "Editar aluno" : "Novo Aluno"}</Title>
+
+      {id && (
+        <ProfilePicture>
+          {foto ? <img src={foto} alt={nome} /> : <FaUserCircle size={180} />}
+          <Link to={`/fotos/${id}`}>
+            <FaEdit size={24} />
+          </Link>
+        </ProfilePicture>
+      )}
 
       <Form onSubmit={handleSubmit}>
         <input
@@ -181,7 +194,3 @@ export default function Aluno({ match }) {
     </Container>
   );
 }
-
-Aluno.propTypes = {
-  match: PropTypes.shape({}).isRequired,
-};

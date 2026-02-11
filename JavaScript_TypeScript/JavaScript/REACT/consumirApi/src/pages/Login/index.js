@@ -2,19 +2,18 @@ import React from "react";
 import { toast } from "react-toastify";
 import { isEmail } from "validator";
 import { useDispatch, useSelector } from "react-redux";
-import { get } from "lodash";
+import { useLocation } from "react-router-dom";
 
 import { Container } from "../../styles/GlobalStyles";
 import { Form } from "./styled";
 import * as actions from "../../store/modules/auth/actions";
-
 import Loading from "../../components/Loading";
 
-export default function Login(props) {
+export default function Login() {
   const dispatch = useDispatch();
+  const location = useLocation();
 
-  const prevPath = get(props, "location.state.prevPath", "/");
-
+  const prevPath = location.state?.prevPath || "/";
   const isLoading = useSelector((state) => state.auth.isLoading);
 
   const [email, setEmail] = React.useState("");

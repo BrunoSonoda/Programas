@@ -32,9 +32,9 @@ export default function Register() {
 
     let formErrors = false;
 
-    if (!id && (password.length < 6 || password.length > 50)) {
+    if (!id && (nome.length < 3 || nome.length > 255)) {
       formErrors = true;
-      toast.error("Nome deve ter entre  3 e 255 caracteres");
+      toast.error("Nome deve ter entre 3 e 255 caracteres");
     }
 
     if (!isEmail(email)) {
@@ -44,7 +44,7 @@ export default function Register() {
 
     if (password.length < 6 || password.length > 50) {
       formErrors = true;
-      toast.error("Senha deve ter entre  6 e 50 caracteres");
+      toast.error("Senha deve ter entre 6 e 50 caracteres");
     }
 
     if (formErrors) return;

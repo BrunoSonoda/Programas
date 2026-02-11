@@ -15,6 +15,11 @@ class FotoController {
       }
 
       try {
+        if (!req.file) {
+          return res.status(400).json({
+            errors: ['Arquivo não enviado'],
+          });
+        }
         const { originalname, filename } = req.file;
         const { aluno_id } = req.body;
         const foto = await Foto.create({ originalname, filename, aluno_id });
