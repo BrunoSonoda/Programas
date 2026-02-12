@@ -2,7 +2,7 @@ import React from "react";
 import { toast } from "react-toastify";
 import { isEmail } from "validator";
 import { useDispatch, useSelector } from "react-redux";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 import { Container } from "../../styles/GlobalStyles";
 import { Form } from "./styled";
@@ -12,12 +12,20 @@ import Loading from "../../components/Loading";
 export default function Login() {
   const dispatch = useDispatch();
   const location = useLocation();
+  const navigate = useNavigate();
 
   const prevPath = location.state?.prevPath || "/";
   const isLoading = useSelector((state) => state.auth.isLoading);
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
 
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
+
+  React.useEffect(() => {
+    if (isLoggedIn) {
+      navigate(prevPath, { replace: true });
+    }
+  }, [isLoggedIn, navigate, prevPath]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -35,7 +43,7 @@ export default function Login() {
 
     if (formErrors) return;
 
-    dispatch(actions.loginRequest({ email, password, prevPath }));
+    dispatch(actions.loginRequest({ email, password }));
   };
 
   return (
